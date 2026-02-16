@@ -79,30 +79,44 @@ export default function DestinationDetailsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen pb-20">
       <SEO
-        title={`${destination.name} - Shahrul Private Tour`}
+        title={`${destination.name} - Destination Guide`}
         description={destination.description}
       />
 
       {/* Hero Image */}
-      <div className="relative h-[60vh] overflow-hidden">
+      <div className="relative h-[60vh]">
         <img
           src={destination.image_url}
           alt={destination.name}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-        <div className="absolute bottom-0 left-0 p-8 container">
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-8 container">
           <Link
             to="/destinations"
             className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Destinations
           </Link>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg"
+          >
             {destination.name}
-          </h1>
+          </motion.h1>
+        </div>
+      </div>
+
+      <div className="container px-4 -mt-10 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          delay={0.2}
+          className="glass-panel p-8 rounded-3xl mb-12"
+        >
           <div className="flex items-center text-white/90 gap-4">
             <span className="flex items-center">
               <MapPin className="w-4 h-4 mr-1" /> Malaysia
@@ -111,7 +125,7 @@ export default function DestinationDetailsPage() {
               From RM {destination.price_start}
             </span>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="container px-4 py-8 grid md:grid-cols-3 gap-12">

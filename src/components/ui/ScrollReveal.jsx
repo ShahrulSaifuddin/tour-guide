@@ -12,7 +12,7 @@ export default function ScrollReveal({ children, delay = 0, width = "100%" }) {
         initial="hidden"
         whileInView="visible"
         transition={{ duration: 0.5, delay }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.2 }}
       >
         {children}
       </motion.div>

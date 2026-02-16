@@ -40,7 +40,7 @@ export default function DestinationsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen pb-20">
       <SEO
         title="Tour Destinations - Shahrul Private Tour"
         description="Explore top destinations in Malaysia including Kuala Lumpur, Penang, Melaka, and Cameron Highlands."
@@ -66,7 +66,7 @@ export default function DestinationsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="group rounded-xl overflow-hidden border border-border/50 bg-card shadow-sm hover:shadow-xl transition-all duration-300"
+              className="group rounded-3xl overflow-hidden glass-panel hover:scale-[1.02] transition-all duration-300"
             >
               <div className="relative aspect-video overflow-hidden">
                 <img

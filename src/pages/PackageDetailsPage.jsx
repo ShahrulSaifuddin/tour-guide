@@ -60,7 +60,7 @@ export default function PackageDetailsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen pb-20">
       <SEO
         title={`${pkg.title} - Shahrul Private Tour`}
         description={pkg.description}

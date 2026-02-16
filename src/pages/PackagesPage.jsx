@@ -40,13 +40,13 @@ export default function PackagesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen pb-20">
       <SEO
         title="Tour Packages - Shahrul Private Tour"
         description="Browse our selection of curated private tours in Malaysia. From city walks to nature adventures."
       />
 
-      <div className="bg-muted/30 py-16 mb-12">
+      <div className="py-16 mb-8 glass-panel mx-4 rounded-3xl mt-8">
         <div className="container text-center px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Curated Experiences
@@ -66,30 +66,34 @@ export default function PackagesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="group rounded-xl overflow-hidden border border-border/50 bg-card shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+              className="group relative rounded-3xl overflow-hidden glass-panel hover:bg-white/10 transition-all duration-500 flex flex-col border border-white/10 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(234,179,8,0.15)]"
             >
               <div className="relative aspect-video overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
                 <img
                   src={pkg.image_url}
                   alt={pkg.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute top-4 right-4 bg-background/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full text-xs font-bold text-white shadow-lg flex items-center gap-1">
+                  <Clock className="w-3 h-3 text-primary" />
                   {pkg.duration}
                 </div>
               </div>
 
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="mb-2 text-sm text-primary font-medium flex items-center">
+              <div className="p-6 flex-1 flex flex-col relative z-20">
+                <div className="mb-2 text-sm text-primary font-medium flex items-center tracking-widest uppercase">
                   <MapPin className="w-3 h-3 mr-1" />
                   {pkg.destinations?.name || "Malaysia"}
                 </div>
-                <h2 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                <h2 className="text-2xl font-serif font-bold mb-2 group-hover:text-primary transition-colors text-white">
                   {pkg.title}
                 </h2>
-                <div className="text-2xl font-bold mb-4">RM {pkg.price}</div>
+                <div className="text-2xl font-bold mb-4 text-slate-200">
+                  RM {pkg.price}
+                </div>
 
-                <p className="text-muted-foreground text-sm line-clamp-3 mb-6 flex-1">
+                <p className="text-slate-400 text-sm line-clamp-3 mb-6 flex-1">
                   {pkg.description}
                 </p>
 
@@ -97,21 +101,21 @@ export default function PackagesPage() {
                   {pkg.inclusions?.slice(0, 2).map((inc, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center text-sm text-muted-foreground/80"
+                      className="flex items-center text-sm text-slate-400"
                     >
-                      <CheckCircle className="w-4 h-4 mr-2 text-green-500/70" />
+                      <CheckCircle className="w-4 h-4 mr-2 text-primary" />
                       {inc}
                     </div>
                   ))}
                   {pkg.inclusions?.length > 2 && (
-                    <div className="text-xs text-muted-foreground pl-6">
+                    <div className="text-xs text-slate-500 pl-6">
                       + {pkg.inclusions.length - 2} more inclusions
                     </div>
                   )}
                 </div>
 
                 <Link to={`/packages/${pkg.slug}`}>
-                  <Button className="w-full gap-2 variant-outline group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Button className="w-full gap-2 variant-outline border-white/20 text-white hover:bg-primary hover:text-black hover:border-primary transition-all duration-300">
                     View Package <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
