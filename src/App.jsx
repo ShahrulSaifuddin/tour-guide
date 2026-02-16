@@ -16,6 +16,8 @@ const DestinationsPage = lazy(() => import("./pages/DestinationsPage"));
 const DestinationDetailsPage = lazy(
   () => import("./pages/DestinationDetailsPage"),
 );
+const PackagesPage = lazy(() => import("./pages/PackagesPage"));
+const PackageDetailsPage = lazy(() => import("./pages/PackageDetailsPage"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 
 import { AuthProvider } from "./context/AuthContext";

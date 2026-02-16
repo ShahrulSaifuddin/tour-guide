@@ -8,13 +8,16 @@ import {
   Calendar,
   CheckCircle,
   ArrowLeft,
+  Clock,
 } from "lucide-react";
 import { Button } from "../components/ui/Button";
 
 export default function DestinationDetailsPage() {
   const { slug } = useParams();
   const [destination, setDestination] = useState(null);
+  const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingPackages, setLoadingPackages] = useState(true);
 
   useEffect(() => {
     fetchDestination();
@@ -31,10 +34,28 @@ export default function DestinationDetailsPage() {
 
       if (error) throw error;
       setDestination(data);
+      if (data) fetchRelatedPackages(data.id);
     } catch (error) {
       console.error("Error fetching destination:", error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchRelatedPackages = async (destinationId) => {
+    try {
+      const { data, error } = await supabase
+        .from("packages")
+        .select("*")
+        .eq("destination_id", destinationId)
+        .order("price", { ascending: true });
+
+      if (error) throw error;
+      setPackages(data || []);
+    } catch (error) {
+      console.error("Error fetching packages:", error);
+    } finally {
+      setLoadingPackages(false);
     }
   };
 
@@ -116,6 +137,63 @@ export default function DestinationDetailsPage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Related Packages */}
+          <section>
+            <h2 className="text-2xl font-bold mb-6">Available Tour Packages</h2>
+            {loadingPackages ? (
+              <div className="flex justify-center p-8">
+                <Loader2 className="animate-spin" />
+              </div>
+            ) : packages.length > 0 ? (
+              <div className="grid gap-6">
+                {packages.map((pkg) => (
+                  <div
+                    key={pkg.id}
+                    className="border border-border rounded-xl overflow-hidden bg-card hover:shadow-md transition-shadow flex flex-col sm:flex-row"
+                  >
+                    <div className="sm:w-1/3 aspect-video sm:aspect-auto relative">
+                      <img
+                        src={pkg.image_url}
+                        alt={pkg.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-lg font-bold mb-2">{pkg.title}</h3>
+                        <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
+                          {pkg.description}
+                        </p>
+                        <div className="flex flex-wrap gap-4 text-sm mb-4">
+                          <span className="flex items-center text-muted-foreground">
+                            <Clock className="w-4 h-4 mr-1" /> {pkg.duration}
+                          </span>
+                          <span className="font-bold text-primary">
+                            RM {pkg.price}
+                          </span>
+                        </div>
+                      </div>
+                      <Link to={`/packages/${pkg.slug}`}>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full sm:w-auto"
+                        >
+                          View Package
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-muted-foreground">
+                No specific packages listed yet. Custom tours available on
+                request.
+              </p>
+            )}
           </section>
         </div>
 

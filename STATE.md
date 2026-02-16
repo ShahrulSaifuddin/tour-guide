@@ -10,10 +10,10 @@ The application is feature complete. Ready for deployment.
 
 ## Recent Accomplishments
 
+- [x] Phase 7 (Packages) completed.
 - [x] Phase 6 (Destination) completed.
 - [x] Phase 5 (About Page) completed.
-- [x] Implemented Google Login.
-- [x] All planned features implemented and verified.
+- [x] All roadmap items implemented.
 
 ## Next Steps
 

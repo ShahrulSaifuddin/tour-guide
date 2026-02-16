@@ -8,6 +8,7 @@
 | 4     | Premium Polish  | **Completed** | Animations, Performance, SEO                          |
 | 5     | About           | **Completed** | Personal bio, services, contact info                  |
 | 6     | Destination     | **Completed** | List of destinations and details                      |
+| 7     | Packages        | **Completed** | Tour packages and pricing options                     |
 
 ## Phase 1: Foundation
 
@@ -62,3 +63,12 @@
 - [ ] Create Destination Details Page (Dynamic Route)
 - [ ] Integrate with Database (Destinations table)
 - [ ] SEO & OpenGraph for Destinations
+
+## Phase 7: Packages
+
+**Goal:** structured tour packages with pricing and inclusions.
+
+- [ ] Database Schema for Packages (if separate from destinations)
+- [ ] Create Packages Listing Page
+- [ ] Package Details Modal/Page
+- [ ] Integration with Booking System
