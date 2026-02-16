@@ -66,9 +66,17 @@ function App() {
                 <Route
                   path="/packages"
                   element={
-                    <div className="p-8 text-center">
-                      Packages Page (Coming Soon)
-                    </div>
+                    <PageWrapper>
+                      <PackagesPage />
+                    </PageWrapper>
+                  }
+                />
+                <Route
+                  path="/packages/:slug"
+                  element={
+                    <PageWrapper>
+                      <PackageDetailsPage />
+                    </PageWrapper>
                   }
                 />
                 <Route
