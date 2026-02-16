@@ -5,6 +5,7 @@ import CalendarPage from "./pages/CalendarPage";
 import MyBookingsPage from "./pages/MyBookingsPage";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AuthPage from "./pages/AuthPage";
+import FeedbackPage from "./pages/FeedbackPage";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/calendar" element={<CalendarPage />} />
             <Route path="/bookings" element={<MyBookingsPage />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route
