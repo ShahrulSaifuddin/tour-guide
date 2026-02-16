@@ -6,6 +6,7 @@ import { supabase } from "../lib/supabase";
 import SEO from "../components/SEO";
 import { Loader2, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "../components/ui/Button";
+import { DestinationCardSkeleton } from "../components/skeletons/DestinationCardSkeleton";
 
 export default function DestinationsPage() {
   const [destinations, setDestinations] = useState([]);
@@ -33,8 +34,18 @@ export default function DestinationsPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-background">
-        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      <div className="min-h-screen pt-24 pb-20">
+        <div className="container px-4">
+          <div className="mb-12 text-center space-y-4">
+            <div className="h-10 w-64 bg-white/10 rounded-full mx-auto animate-pulse"></div>
+            <div className="h-6 w-96 bg-white/10 rounded-full mx-auto animate-pulse"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <DestinationCardSkeleton key={i} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

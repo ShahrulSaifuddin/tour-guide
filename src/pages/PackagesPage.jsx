@@ -6,6 +6,7 @@ import { supabase } from "../lib/supabase";
 import SEO from "../components/SEO";
 import { Loader2, Clock, CheckCircle, ArrowRight, MapPin } from "lucide-react";
 import { Button } from "../components/ui/Button";
+import { PackageCardSkeleton } from "../components/skeletons/PackageCardSkeleton";
 
 export default function PackagesPage() {
   const [packages, setPackages] = useState([]);
@@ -33,8 +34,15 @@ export default function PackagesPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-background">
-        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      <div className="min-h-screen pb-20 pt-8">
+        <div className="container px-4">
+          <div className="py-16 mb-8 glass-panel mx-4 rounded-3xl mt-8 animate-pulse bg-white/5 h-48"></div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <PackageCardSkeleton key={i} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

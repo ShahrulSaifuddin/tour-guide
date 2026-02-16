@@ -15,10 +15,16 @@ import { useAvailability } from "@/hooks/useAvailability";
 import BookingDrawer from "@/components/booking/BookingDrawer";
 import SEO from "../components/SEO";
 
+import { CalendarSkeleton } from "@/components/skeletons/CalendarSkeleton";
+
 export default function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { availability } = useAvailability(currentDate); // Removed unused loading
+  const { availability, loading } = useAvailability(currentDate);
   const [selectedDate, setSelectedDate] = useState(null);
+
+  if (loading) {
+    return <CalendarSkeleton />;
+  }
 
   const firstDay = startOfMonth(currentDate);
   const lastDay = endOfMonth(currentDate);

@@ -23,6 +23,11 @@ const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 import { AuthProvider } from "./context/AuthContext";
 import { HelmetProvider } from "react-helmet-async";
 
+// Import Skeletons
+import { HomeSkeleton } from "./components/skeletons/HomeSkeleton";
+import { AboutSkeleton } from "./components/skeletons/AboutSkeleton";
+import { Skeleton } from "./components/ui/Skeleton"; // Fallback for others
+
 function App() {
   const location = useLocation();
 
@@ -30,10 +35,13 @@ function App() {
     <HelmetProvider>
       <AuthProvider>
         <Layout>
+          {/* Main Suspense for code splitting with a generic minimal fallback if needed, 
+              but specific pages will have their own Suspense to show layout skeletons immediately. */}
           <Suspense
             fallback={
-              <div className="flex justify-center items-center h-screen bg-dark-900">
-                <Loader2 className="w-10 h-10 animate-spin text-primary-500" />
+              // Minimal global fallback if no specific skeleton catches it
+              <div className="flex justify-center items-center h-screen bg-transparent">
+                <Loader2 className="w-10 h-10 animate-spin text-primary" />
               </div>
             }
           >
@@ -42,9 +50,11 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <PageWrapper>
-                      <HomePage />
-                    </PageWrapper>
+                    <Suspense fallback={<HomeSkeleton />}>
+                      <PageWrapper>
+                        <HomePage />
+                      </PageWrapper>
+                    </Suspense>
                   }
                 />
                 <Route
@@ -114,9 +124,11 @@ function App() {
                 <Route
                   path="/about"
                   element={
-                    <PageWrapper>
-                      <AboutPage />
-                    </PageWrapper>
+                    <Suspense fallback={<AboutSkeleton />}>
+                      <PageWrapper>
+                        <AboutPage />
+                      </PageWrapper>
+                    </Suspense>
                   }
                 />
                 <Route

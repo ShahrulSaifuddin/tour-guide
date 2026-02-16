@@ -12,6 +12,7 @@ import {
   Shield,
 } from "lucide-react";
 import { Button } from "../components/ui/Button";
+import { PackageDetailsSkeleton } from "../components/skeletons/PackageDetailsSkeleton";
 
 export default function PackageDetailsPage() {
   const { slug } = useParams();
@@ -41,11 +42,7 @@ export default function PackageDetailsPage() {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-background">
-        <Loader2 className="w-10 h-10 animate-spin text-primary" />
-      </div>
-    );
+    return <PackageDetailsSkeleton />;
   }
 
   if (!pkg) {
