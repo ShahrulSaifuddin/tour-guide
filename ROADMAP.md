@@ -1,11 +1,12 @@
 # Roadmap - Shahrul Private Tour Guide
 
-| Phase | Name            | Status      | Description                                           |
-| :---- | :-------------- | :---------- | :---------------------------------------------------- |
-| 1     | Foundation      | **Planned** | UI shell, Authentication, Public Calendar (read-only) |
-| 2     | Booking System  | Future      | Slots, Booking Flow, Admin Availability Manager       |
-| 3     | Feedback System | Future      | Feedback CRUD, Public Display, Moderation             |
-| 4     | Premium Polish  | Future      | Animations, Performance, SEO                          |
+| Phase | Name            | Status        | Description                                           |
+| :---- | :-------------- | :------------ | :---------------------------------------------------- |
+| 1     | Foundation      | **Planned**   | UI shell, Authentication, Public Calendar (read-only) |
+| 2     | Booking System  | Future        | Slots, Booking Flow, Admin Availability Manager       |
+| 3     | Feedback System | Future        | Feedback CRUD, Public Display, Moderation             |
+| 4     | Premium Polish  | **Completed** | Animations, Performance, SEO                          |
+| 5     | About           | Future        | Personal bio, services, contact info                  |
 
 ## Phase 1: Foundation
 
@@ -42,3 +43,12 @@
 - [ ] Scroll-driven animations (Framer Motion)
 - [ ] Image optimization
 - [ ] SEO Metadata & OpenGraph
+
+## Phase 5: About
+
+**Goal:** Introduce the guide and services to build personal connection.
+
+- [ ] Create About Page
+- [ ] Add Personal Bio & Photo
+- [ ] List Services/Packages
+- [ ] Contact/Social Links

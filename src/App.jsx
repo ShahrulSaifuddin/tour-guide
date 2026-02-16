@@ -11,6 +11,7 @@ const CalendarPage = lazy(() => import("./pages/CalendarPage"));
 const MyBookingsPage = lazy(() => import("./pages/MyBookingsPage"));
 const FeedbackPage = lazy(() => import("./pages/FeedbackPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 
 import { AuthProvider } from "./context/AuthContext";
@@ -69,6 +70,14 @@ function App() {
                   element={
                     <PageWrapper>
                       <AuthPage />
+                    </PageWrapper>
+                  }
+                />
+                <Route
+                  path="/about"
+                  element={
+                    <PageWrapper>
+                      <AboutPage />
                     </PageWrapper>
                   }
                 />
