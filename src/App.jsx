@@ -12,6 +12,10 @@ const MyBookingsPage = lazy(() => import("./pages/MyBookingsPage"));
 const FeedbackPage = lazy(() => import("./pages/FeedbackPage"));
 const AuthPage = lazy(() => import("./pages/AuthPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const DestinationsPage = lazy(() => import("./pages/DestinationsPage"));
+const DestinationDetailsPage = lazy(
+  () => import("./pages/DestinationDetailsPage"),
+);
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 
 import { AuthProvider } from "./context/AuthContext";
@@ -39,6 +43,30 @@ function App() {
                     <PageWrapper>
                       <HomePage />
                     </PageWrapper>
+                  }
+                />
+                <Route
+                  path="/destinations"
+                  element={
+                    <PageWrapper>
+                      <DestinationsPage />
+                    </PageWrapper>
+                  }
+                />
+                <Route
+                  path="/destinations/:slug"
+                  element={
+                    <PageWrapper>
+                      <DestinationDetailsPage />
+                    </PageWrapper>
+                  }
+                />
+                <Route
+                  path="/packages"
+                  element={
+                    <div className="p-8 text-center">
+                      Packages Page (Coming Soon)
+                    </div>
                   }
                 />
                 <Route

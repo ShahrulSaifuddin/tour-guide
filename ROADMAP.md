@@ -6,7 +6,8 @@
 | 2     | Booking System  | Future        | Slots, Booking Flow, Admin Availability Manager       |
 | 3     | Feedback System | Future        | Feedback CRUD, Public Display, Moderation             |
 | 4     | Premium Polish  | **Completed** | Animations, Performance, SEO                          |
-| 5     | About           | Future        | Personal bio, services, contact info                  |
+| 5     | About           | **Completed** | Personal bio, services, contact info                  |
+| 6     | Destination     | **Completed** | List of destinations and details                      |
 
 ## Phase 1: Foundation
 
@@ -52,3 +53,12 @@
 - [ ] Add Personal Bio & Photo
 - [ ] List Services/Packages
 - [ ] Contact/Social Links
+
+## Phase 6: Destination
+
+**Goal:** Showcase the various locations available for tours.
+
+- [ ] Create Destinations Listing Page
+- [ ] Create Destination Details Page (Dynamic Route)
+- [ ] Integrate with Database (Destinations table)
+- [ ] SEO & OpenGraph for Destinations
