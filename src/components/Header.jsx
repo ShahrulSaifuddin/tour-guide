@@ -62,7 +62,7 @@ export default function Header() {
           {user ? (
             <div className="flex items-center gap-4">
               <Link
-                to="/my-bookings"
+                to="/bookings"
                 className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground"
               >
                 My Bookings

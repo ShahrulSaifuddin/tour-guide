@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import CalendarPage from "./pages/CalendarPage";
+import MyBookingsPage from "./pages/MyBookingsPage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AuthPage from "./pages/AuthPage";
 import { AuthProvider } from "./context/AuthContext";
 
 function App() {
@@ -12,12 +15,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/calendar" element={<CalendarPage />} />
-            <Route
-              path="/auth"
-              element={
-                <div className="p-8 text-center">Auth Page (Coming Soon)</div>
-              }
-            />
+            <Route path="/bookings" element={<MyBookingsPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route
               path="*"
               element={<div className="p-8 text-center">404 - Not Found</div>}
