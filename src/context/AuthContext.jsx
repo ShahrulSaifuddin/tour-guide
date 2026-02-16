@@ -30,8 +30,15 @@ export const AuthProvider = ({ children }) => {
   const value = {
     signUp: (data) => supabase.auth.signUp(data),
     signIn: (data) => supabase.auth.signInWithPassword(data),
-    signInWithGoogle: () =>
-      supabase.auth.signInWithOAuth({ provider: "google" }),
+    signInWithGoogle: async () => {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: window.location.origin,
+        },
+      });
+      if (error) throw error;
+    },
     signOut: () => supabase.auth.signOut(),
     user,
     loading,
