@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/Button";
 import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
+import SEO from "../components/SEO";
 
 export default function MyBookingsPage() {
   const { user } = useAuth();
@@ -38,6 +39,7 @@ export default function MyBookingsPage() {
 
   return (
     <div className="container py-8 max-w-3xl">
+      <SEO title="My Bookings" />
       <h1 className="text-3xl font-bold mb-8">My Bookings</h1>
 
       {loading ? (

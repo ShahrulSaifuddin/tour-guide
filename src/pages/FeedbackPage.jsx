@@ -5,6 +5,7 @@ import FeedbackForm from "../components/feedback/FeedbackForm";
 import { MessageSquarePlus } from "lucide-react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import SEO from "../components/SEO";
 
 export default function FeedbackPage() {
   const [session, setSession] = useState(null);
@@ -32,6 +33,10 @@ export default function FeedbackPage() {
 
   return (
     <div className="min-h-screen bg-dark-900 pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+      <SEO
+        title="Guest Reviews"
+        description="Read verified reviews from travelers who have booked private tours with Shahrul."
+      />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/10 pb-6">
           <div>

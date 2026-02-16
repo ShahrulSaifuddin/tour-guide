@@ -10,6 +10,8 @@ export default function ReviewCard({ review }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300 }}
       className="relative overflow-hidden rounded-2xl bg-white/10 p-6 backdrop-blur-md border border-white/20 shadow-xl"
     >
       {/* Glass shine effect */}

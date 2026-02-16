@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { useAvailability } from "@/hooks/useAvailability";
 import BookingDrawer from "@/components/booking/BookingDrawer";
+import SEO from "../components/SEO";
 
 export default function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -50,6 +51,10 @@ export default function CalendarPage() {
 
   return (
     <div className="container py-8 max-w-4xl">
+      <SEO
+        title="Availability Calendar"
+        description="Check Shahrul's availability for private tours in Malaysia."
+      />
       <h1 className="text-3xl font-bold mb-2">Check Availability</h1>
       <p className="text-muted-foreground mb-8">
         Browse open slots for your private tour. Weekend slots are available by
