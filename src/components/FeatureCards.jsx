@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Shield, Map, Zap, Heart } from "lucide-react";
 import ScrollReveal from "./ui/ScrollReveal";
+import { useState } from "react";
 
 const features = [
   {
@@ -29,6 +30,8 @@ const features = [
 ];
 
 export default function FeatureCards() {
+  const [reverseStagger, setReverseStagger] = useState(false);
+
   return (
     <section className="py-20 relative z-10">
       <div className="container px-4">
@@ -43,28 +46,46 @@ export default function FeatureCards() {
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-panel p-8 rounded-2xl border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)]"
-            >
-              <div className="h-14 w-14 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <feature.icon className="w-7 h-7 text-slate-300 group-hover:text-primary transition-colors" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          onViewportEnter={(entry) => {
+            // If y > 0, we are scrolling down (feature enters from bottom) -> Reverse Order (4->3->2->1)
+            // If y < 0, we are scrolling up (feature enters from top) -> Normal Order (1->2->3->4)
+            if (entry?.boundingClientRect?.y > 0) {
+              setReverseStagger(true);
+            } else {
+              setReverseStagger(false);
+            }
+          }}
+        >
+          {features.map((feature, index) => {
+            // Apply delay based on direction
+            const delayIndex = reverseStagger
+              ? features.length - 1 - index
+              : index;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ delay: delayIndex * 0.15, duration: 0.5 }}
+                className="glass-panel p-8 rounded-2xl border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)]"
+              >
+                <div className="h-14 w-14 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                  <feature.icon className="w-7 h-7 text-slate-300 group-hover:text-primary transition-colors" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

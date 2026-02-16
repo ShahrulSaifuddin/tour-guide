@@ -41,7 +41,7 @@ function App() {
             fallback={
               // Minimal global fallback if no specific skeleton catches it
               <div className="flex justify-center items-center h-screen bg-transparent">
-                <Loader2 className="w-10 h-10 animate-spin text-primary" />
+                <Skeleton className="w-full h-full opacity-10" />
               </div>
             }
           >
