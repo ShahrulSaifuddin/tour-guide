@@ -4,7 +4,7 @@
 
 @layer components {
   .glass-panel {
-    @apply bg-white/20 dark:bg-black/30 backdrop-blur-xl backdrop-saturate-150 border border-white/30 shadow-2xl;
+    @apply bg-slate-900/70 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-2xl;
   }
 }
 

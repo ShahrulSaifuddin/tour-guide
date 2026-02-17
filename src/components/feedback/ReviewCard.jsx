@@ -12,7 +12,7 @@ export default function ReviewCard({ review }) {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -5, scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="relative overflow-hidden rounded-2xl bg-white/10 p-6 backdrop-blur-md border border-white/20 shadow-xl"
+      className="relative overflow-hidden rounded-2xl glass-panel p-6"
     >
       {/* Glass shine effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50 pointer-events-none" />
@@ -31,7 +31,7 @@ export default function ReviewCard({ review }) {
               />
             ))}
           </div>
-          <span className="text-xs text-secondary-200">
+          <span className="text-xs text-slate-400">
             {new Date(created_at).toLocaleDateString()}
           </span>
         </div>
@@ -40,7 +40,7 @@ export default function ReviewCard({ review }) {
         <h3 className="text-lg font-bold text-white mb-2 line-clamp-1">
           {title}
         </h3>
-        <p className="text-secondary-100 text-sm mb-4 line-clamp-4 flex-grow italic">
+        <p className="text-slate-300 text-sm mb-4 line-clamp-4 flex-grow italic">
           "{message}"
         </p>
 

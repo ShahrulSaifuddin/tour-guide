@@ -71,7 +71,7 @@ export default function FeatureCards() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, margin: "-50px" }}
                 transition={{ delay: delayIndex * 0.15, duration: 0.5 }}
-                className="glass-panel p-8 rounded-2xl border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)]"
+                className="glass-panel p-8 rounded-2xl border border-white/5 hover:bg-slate-800/50 hover:border-primary/30 transition-all duration-300 group hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)]"
               >
                 <div className="h-14 w-14 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                   <feature.icon className="w-7 h-7 text-slate-300 group-hover:text-primary transition-colors" />
@@ -79,7 +79,7 @@ export default function FeatureCards() {
                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>

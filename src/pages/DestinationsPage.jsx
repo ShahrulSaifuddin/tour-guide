@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { supabase } from "../lib/supabase";
 import SEO from "../components/SEO";
-import { Loader2, MapPin, ArrowRight } from "lucide-react";
+import DestinationsHero from "../components/destinations/DestinationsHero";
+import DiscoverySection from "../components/destinations/DiscoverySection";
+import DestinationCard from "../components/destinations/DestinationCard";
+import EditorialSection from "../components/destinations/EditorialSection";
+import { destinationsEditorial } from "../data/destinationsData";
 import { Button } from "../components/ui/Button";
-import { DestinationCardSkeleton } from "../components/skeletons/DestinationCardSkeleton";
+import { Loader2 } from "lucide-react";
 
 export default function DestinationsPage() {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeFilter, setActiveFilter] = useState("All");
 
   useEffect(() => {
     fetchDestinations();
@@ -32,97 +37,95 @@ export default function DestinationsPage() {
     }
   };
 
+  const filteredDestinations = destinations.filter((dest) => {
+    const editorial =
+      destinationsEditorial[dest.slug] || destinationsEditorial.default;
+    const matchesSearch =
+      dest.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      editorial.vibe.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter =
+      activeFilter === "All" || editorial.bestFor.includes(activeFilter);
+
+    return matchesSearch && matchesFilter;
+  });
+
   if (loading) {
     return (
-      <div className="min-h-screen pt-24 pb-20">
-        <div className="container px-4">
-          <div className="mb-12 text-center space-y-4">
-            <div className="h-10 w-64 bg-white/10 rounded-full mx-auto animate-pulse"></div>
-            <div className="h-6 w-96 bg-white/10 rounded-full mx-auto animate-pulse"></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <DestinationCardSkeleton key={i} />
-            ))}
-          </div>
-        </div>
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pb-20">
+    <div className="min-h-screen pb-20 overflow-x-hidden">
       <SEO
-        title="Tour Destinations - Shahrul Private Tour"
-        description="Explore top destinations in Malaysia including Kuala Lumpur, Penang, Melaka, and Cameron Highlands."
+        title="Explore Destinations - Shahrul Private Tour"
+        description="Discover the beauty, culture, and history of Malaysia's most iconic locations. Curated guides and travel inspiration."
       />
 
-      <div className="bg-muted/30 py-16 mb-12">
-        <div className="container text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Explore Malaysia
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discover the beauty, culture, and history of Malaysia's most iconic
-            locations.
-          </p>
+      <DestinationsHero
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        activeFilter={activeFilter}
+        setActiveFilter={setActiveFilter}
+      />
+
+      <DiscoverySection />
+
+      <section className="container px-4 py-8">
+        <div className="flex justify-between items-end mb-12">
+          <h2 className="text-3xl font-serif font-bold text-white">
+            All Destinations
+            <span className="block text-sm font-sans font-normal text-slate-400 mt-2">
+              {filteredDestinations.length} locations found
+            </span>
+          </h2>
         </div>
-      </div>
 
-      <div className="container px-4">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {destinations.map((destination, index) => (
-            <motion.div
-              key={destination.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="group rounded-3xl overflow-hidden glass-panel hover:scale-[1.02] transition-all duration-300"
-            >
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={destination.image_url}
-                  alt={destination.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h2 className="text-xl font-bold">{destination.name}</h2>
-                  <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                    From RM {destination.price_start}
-                  </span>
-                </div>
-
-                <p className="text-muted-foreground line-clamp-2 mb-4 text-sm">
-                  {destination.description}
-                </p>
-
-                <div className="space-y-2 mb-6">
-                  {destination.highlights.slice(0, 3).map((highlight, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center text-sm text-muted-foreground/80"
-                    >
-                      <MapPin className="w-4 h-4 mr-2 text-primary/70" />
-                      {highlight}
-                    </div>
-                  ))}
-                </div>
-
-                <Link to={`/destinations/${destination.slug}`}>
-                  <Button className="w-full gap-2 group-hover:bg-primary/90">
-                    View Details{" "}
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid gap-8">
+          {filteredDestinations.length > 0 ? (
+            filteredDestinations.map((destination) => (
+              <DestinationCard
+                key={destination.id}
+                destination={destination}
+                editorial={
+                  destinationsEditorial[destination.slug] ||
+                  destinationsEditorial.default
+                }
+              />
+            ))
+          ) : (
+            <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/10">
+              <p className="text-xl text-slate-300 mb-4">
+                No destinations match your search.
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchQuery("");
+                  setActiveFilter("All");
+                }}
+                className="border-white/20 text-white hover:bg-white/10"
+              >
+                Clear Filters
+              </Button>
+            </div>
+          )}
         </div>
-      </div>
+      </section>
+
+      <EditorialSection />
+
+      {/* Footer CTA */}
+      <section className="container px-4 py-20 text-center">
+        <h2 className="text-2xl font-bold text-white mb-6">
+          Not sure where to start?
+        </h2>
+        <Button className="rounded-full px-8 py-6 text-lg bg-white text-black hover:bg-slate-200">
+          Help me choose a destination
+        </Button>
+      </section>
     </div>
   );
 }
