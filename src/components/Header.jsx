@@ -18,7 +18,7 @@ export default function Header() {
             </span>
           </Link>
           <nav className="flex items-center gap-6 text-sm font-medium">
-            {["Destinations", "Packages", "Availability", "About"].map(
+            {["Destinations", "Experiences", "Availability", "About"].map(
               (item) => (
                 <Link
                   key={item}
@@ -92,7 +92,7 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-[#030712]/95 backdrop-blur-xl border-b border-white/10 p-4 shadow-2xl">
           <div className="space-y-1 px-2 pb-3 pt-2">
-            {["Destinations", "Packages", "Availability", "About"].map(
+            {["Destinations", "Experiences", "Availability", "About"].map(
               (item) => (
                 <Link
                   key={item}

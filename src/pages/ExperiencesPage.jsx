@@ -11,7 +11,7 @@ import { destinations } from "../data/destinationsData";
 
 import OptimizedImage from "../components/ui/OptimizedImage";
 
-export default function PackagesPage() {
+export default function ExperiencesPage() {
   // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false); // Can remove if unnecessary, but keeping structure simple
 

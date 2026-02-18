@@ -16,8 +16,10 @@ const DestinationsPage = lazy(() => import("./pages/DestinationsPage"));
 const DestinationDetailsPage = lazy(
   () => import("./pages/DestinationDetailsPage"),
 );
-const PackagesPage = lazy(() => import("./pages/PackagesPage"));
-const PackageDetailsPage = lazy(() => import("./pages/PackageDetailsPage"));
+const ExperiencesPage = lazy(() => import("./pages/ExperiencesPage"));
+const ExperienceDetailsPage = lazy(
+  () => import("./pages/ExperienceDetailsPage"),
+);
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
@@ -68,10 +70,18 @@ function App() {
                   }
                 />
                 <Route
+                  path="/experiences"
+                  element={
+                    <PageWrapper>
+                      <ExperiencesPage />
+                    </PageWrapper>
+                  }
+                />
+                <Route
                   path="/packages"
                   element={
                     <PageWrapper>
-                      <PackagesPage />
+                      <ExperiencesPage />
                     </PageWrapper>
                   }
                 />
@@ -79,7 +89,15 @@ function App() {
                   path="/packages/:slug"
                   element={
                     <PageWrapper>
-                      <PackageDetailsPage />
+                      <ExperienceDetailsPage />
+                    </PageWrapper>
+                  }
+                />
+                <Route
+                  path="/destinations/:slug/experiences/:experienceSlug"
+                  element={
+                    <PageWrapper>
+                      <ExperienceDetailsPage />
                     </PageWrapper>
                   }
                 />
