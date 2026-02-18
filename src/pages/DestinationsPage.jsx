@@ -1,41 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { supabase } from "../lib/supabase";
 import SEO from "../components/SEO";
 import DestinationsHero from "../components/destinations/DestinationsHero";
 import DiscoverySection from "../components/destinations/DiscoverySection";
 import DestinationCard from "../components/destinations/DestinationCard";
 import EditorialSection from "../components/destinations/EditorialSection";
-import { destinationsEditorial } from "../data/destinationsData";
+import { destinations, destinationsEditorial } from "../data/destinationsData";
 import { Button } from "../components/ui/Button";
-import { Loader2 } from "lucide-react";
 
 export default function DestinationsPage() {
-  const [destinations, setDestinations] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
-
-  useEffect(() => {
-    fetchDestinations();
-  }, []);
-
-  const fetchDestinations = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("destinations")
-        .select("*")
-        .order("price_start", { ascending: true });
-
-      if (error) throw error;
-      setDestinations(data || []);
-    } catch (error) {
-      console.error("Error fetching destinations:", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const filteredDestinations = destinations.filter((dest) => {
     const editorial =
@@ -48,14 +24,6 @@ export default function DestinationsPage() {
 
     return matchesSearch && matchesFilter;
   });
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen pb-20 overflow-x-hidden">

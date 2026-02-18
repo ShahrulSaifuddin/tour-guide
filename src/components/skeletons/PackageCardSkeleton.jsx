@@ -1,4 +1,5 @@
 import { Skeleton } from "../ui/Skeleton";
+// eslint-disable-next-line no-unused-vars
 import { cn } from "@/lib/utils";
 
 export function PackageCardSkeleton() {
