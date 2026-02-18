@@ -43,8 +43,7 @@ export const packages = [
       "Taste the best of Malaysia! We take you to hidden stalls and local favorites for an authentic culinary adventure.",
     price: 300,
     duration: "4 Hours",
-    image_url:
-      "https://images.unsplash.com/photo-1627488974558-8120c822709d?q=80&w=2070",
+    image_url: "/images/HiddenGemsFoodTour.jpg",
     destination_id: "eff915ad-1d09-415c-ad01-1093cc47e36e",
     inclusions: ["Food Tasting (5+ stops)", "Transport", "Guide"],
     is_featured: true,
@@ -79,8 +78,7 @@ export const packages = [
       "Dive deep into the history of George Town. Visit clan jetties, temples, and famous street art locations.",
     price: 200,
     duration: "3 Hours",
-    image_url:
-      "https://images.unsplash.com/photo-1605342415307-285600d89053?q=80&w=2070",
+    image_url: "/images/GeorgeTownHeritageWalk.jpg",
     destination_id: "563610d9-4f47-460e-b294-295add8c5d54",
     inclusions: ["Walking Guide", "Heritage Snacks", "Map"],
     is_featured: false,
@@ -115,8 +113,7 @@ export const packages = [
       "Explore the UNESCO World Heritage city of Melaka. Visit A Famosa, St. Paul's Hill, and enjoy a Nyonya launch.",
     price: 450,
     duration: "8 Hours",
-    image_url:
-      "https://images.unsplash.com/photo-1627448882488-842245214732?q=80&w=2070",
+    image_url: "/images/MelakaHistoricalFullDay.jpg",
     destination_id: "2d01e65e-a6a4-4153-9b79-1e03f11d0944",
     inclusions: ["Transport from KL", "Lunch", "Entrance Fees", "River Cruise"],
     is_featured: true,
@@ -156,8 +153,7 @@ export const packages = [
       "Breathe in the cool air of the highlands. Visit tea plantations, mossy forest, and strawberry farms.",
     price: 500,
     duration: "Full Day",
-    image_url:
-      "https://images.unsplash.com/photo-1542456306-69d67b7fc344?q=80&w=2070",
+    image_url: "/images/CameronHighlandsNatureDiscovery.jpg",
     destination_id: "069b58c5-f4e0-43fe-a37c-c3272cf715a5",
     inclusions: ["Transport", "Tea Factory Tour", "Strawberry Picking"],
     is_featured: false,

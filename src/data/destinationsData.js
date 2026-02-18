@@ -22,8 +22,7 @@ export const destinations = [
     slug: "penang",
     description:
       "Explore the streets of George Town, a UNESCO World Heritage site, and indulge in world-famous street food.",
-    image_url:
-      "https://images.unsplash.com/photo-1605342415307-285600d89053?q=80&w=2070",
+    image_url: "/images/PenangHeritage&Food.jpg",
     price_start: 400,
     highlights: [
       "George Town Street Art",
@@ -38,8 +37,7 @@ export const destinations = [
     slug: "melaka",
     description:
       "Step back in time in Malaysia's most historic city. Visit Dutch colonial buildings, walk Jonker Street, and cruise the Melaka River.",
-    image_url:
-      "https://images.unsplash.com/photo-1627448882488-842245214732?q=80&w=2070",
+    image_url: "/images/HistoricalMelaka.jpg",
     price_start: 450,
     highlights: ["Red Square", "Jonker Street", "A Famosa", "River Cruise"],
   },
@@ -49,8 +47,7 @@ export const destinations = [
     slug: "cameron-highlands",
     description:
       "Escape the heat to the cool hills. Walk through tea plantations, visit strawberry farms, and enjoy the lush greenery.",
-    image_url:
-      "https://images.unsplash.com/photo-1542456306-69d67b7fc344?q=80&w=2070",
+    image_url: "/images/CameronHighlandsNature.jpg",
     price_start: 500,
     highlights: [
       "BOH Tea Plantation",
@@ -65,8 +62,7 @@ export const destinations = [
     slug: "ipoh",
     description:
       "Famous for its white coffee, stunning limestone cave temples, and colonial architecture.",
-    image_url:
-      "https://images.unsplash.com/photo-1614945377507-6bd2859c256a?q=80&w=2070",
+    image_url: "/images/IpohCave&Culture.jpg",
     price_start: 350,
     highlights: [
       "Kellies Castle",
@@ -151,29 +147,25 @@ export const collections = [
   {
     id: 1,
     title: "Weekend Escapes",
-    image:
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=2000&auto=format&fit=crop",
+    image: "/images/WeekendEscapes.jpg",
     count: "5 Destinations",
   },
   {
     id: 2,
     title: "Heritage Routes",
-    image:
-      "https://images.unsplash.com/photo-1581439645268-d586cd16da65?q=80&w=2000&auto=format&fit=crop",
+    image: "/images/HeritageRoutes.jpg",
     count: "3 Destinations",
   },
   {
     id: 3,
     title: "Food Trails",
-    image:
-      "https://images.unsplash.com/photo-1606509033324-4f0545f4922c?q=80&w=2000&auto=format&fit=crop",
+    image: "/images/FoodTrails.jpg",
     count: "4 Destinations",
   },
   {
     id: 4,
     title: "Nature Retreats",
-    image:
-      "https://images.unsplash.com/photo-1510425275810-770cf08fc46a?q=80&w=2000&auto=format&fit=crop",
+    image: "/images/NatureRetreats.jpg",
     count: "6 Destinations",
   },
 ];

@@ -44,7 +44,7 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887"
+                    src="/images/ShahrulProfile.jpeg"
                     alt="Shahrul Profile"
                     className="w-full h-full object-cover"
                   />
