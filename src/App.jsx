@@ -19,6 +19,7 @@ const DestinationDetailsPage = lazy(
 const PackagesPage = lazy(() => import("./pages/PackagesPage"));
 const PackageDetailsPage = lazy(() => import("./pages/PackageDetailsPage"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 import { AuthProvider } from "./context/AuthContext";
 import { HelmetProvider } from "react-helmet-async";
@@ -135,7 +136,9 @@ function App() {
                 <Route
                   path="*"
                   element={
-                    <div className="p-8 text-center">404 - Not Found</div>
+                    <PageWrapper>
+                      <NotFoundPage />
+                    </PageWrapper>
                   }
                 />
               </Routes>

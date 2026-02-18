@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import ScrollReveal from "../components/ui/ScrollReveal";
 import SEO from "../components/SEO";
 import DestinationsHero from "../components/destinations/DestinationsHero";
 import DiscoverySection from "../components/destinations/DiscoverySection";
@@ -54,14 +55,15 @@ export default function DestinationsPage() {
         <div className="grid gap-8">
           {filteredDestinations.length > 0 ? (
             filteredDestinations.map((destination) => (
-              <DestinationCard
-                key={destination.id}
-                destination={destination}
-                editorial={
-                  destinationsEditorial[destination.slug] ||
-                  destinationsEditorial.default
-                }
-              />
+              <ScrollReveal key={destination.id} delay={0.1}>
+                <DestinationCard
+                  destination={destination}
+                  editorial={
+                    destinationsEditorial[destination.slug] ||
+                    destinationsEditorial.default
+                  }
+                />
+              </ScrollReveal>
             ))
           ) : (
             <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/10">
