@@ -15,7 +15,7 @@
 
 ## Phase 2: Performance Optimization
 
-**Status**: 🚧 In Progress
+**Status**: ✅ Completed
 **Goal**: Implement image optimization and code splitting.
 
 ### Must-Haves for Phase 2
@@ -23,3 +23,14 @@
 1. **Image Optimization**: Replace standard `img` tags with optimized loading components/strategies.
 2. **Code Splitting**: Implement lazy loading for routes (`DestinationsPage`, `PackagesPage`, etc.).
 3. **Bundle Analysis**: Verify bundle size reduction.
+
+## Phase 3: Authentication (Facebook Login)
+
+**Status**: 📅 Planned
+**Goal**: Implement social login with Facebook.
+
+### Must-Haves for Phase 3
+
+1. **Facebook OAuth**: Integrate Facebook Login SDK/Supabase Auth.
+2. **User Session**: Handle user signup/login state.
+3. **UI Integration**: Add "Continue with Facebook" button to AuthPage.

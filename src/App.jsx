@@ -23,10 +23,11 @@ const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 import { AuthProvider } from "./context/AuthContext";
 import { HelmetProvider } from "react-helmet-async";
 
+import LoadingSpinner from "./components/ui/LoadingSpinner";
+
 // Import Skeletons
 import { HomeSkeleton } from "./components/skeletons/HomeSkeleton";
 import { AboutSkeleton } from "./components/skeletons/AboutSkeleton";
-import { Skeleton } from "./components/ui/Skeleton"; // Fallback for others
 
 function App() {
   const location = useLocation();
@@ -35,16 +36,8 @@ function App() {
     <HelmetProvider>
       <AuthProvider>
         <Layout>
-          {/* Main Suspense for code splitting with a generic minimal fallback if needed, 
-              but specific pages will have their own Suspense to show layout skeletons immediately. */}
-          <Suspense
-            fallback={
-              // Minimal global fallback if no specific skeleton catches it
-              <div className="flex justify-center items-center h-screen bg-transparent">
-                <Skeleton className="w-full h-full opacity-10" />
-              </div>
-            }
-          >
+          {/* Main Suspense for code splitting */}
+          <Suspense fallback={<LoadingSpinner />}>
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
                 <Route

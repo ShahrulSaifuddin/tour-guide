@@ -3,6 +3,8 @@ import { MapPin, Calendar, ArrowRight, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/Button";
 
+import OptimizedImage from "../ui/OptimizedImage";
+
 export default function DestinationCard({ destination, editorial }) {
   const { name, image_url, slug } = destination;
   const { vibe, highlights, bestFor, bestTime, stats } = editorial;
@@ -16,9 +18,10 @@ export default function DestinationCard({ destination, editorial }) {
     >
       {/* Image Section - Standardized Aspect Ratio */}
       <div className="w-full md:w-2/5 lg:w-1/3 relative shrink-0 overflow-hidden rounded-2xl h-64 md:h-auto">
-        <img
+        <OptimizedImage
           src={image_url}
           alt={name}
+          containerClassName="w-full h-full"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white flex items-center gap-1 border border-white/10">

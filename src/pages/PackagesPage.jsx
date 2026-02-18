@@ -8,6 +8,8 @@ import { Button } from "../components/ui/Button";
 import { packages } from "../data/packagesData";
 import { destinations } from "../data/destinationsData";
 
+import OptimizedImage from "../components/ui/OptimizedImage";
+
 export default function PackagesPage() {
   // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false); // Can remove if unnecessary, but keeping structure simple
@@ -48,9 +50,10 @@ export default function PackagesPage() {
             >
               <div className="relative aspect-video overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-                <img
+                <OptimizedImage
                   src={pkg.image_url}
                   alt={pkg.title}
+                  containerClassName="w-full h-full"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full text-xs font-bold text-white shadow-lg flex items-center gap-1">
