@@ -1,51 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { supabase } from "../lib/supabase";
 import SEO from "../components/SEO";
-import { Loader2, Clock, CheckCircle, ArrowRight, MapPin } from "lucide-react";
+import { CheckCircle, ArrowRight, MapPin } from "lucide-react";
 import { Button } from "../components/ui/Button";
-import { PackageCardSkeleton } from "../components/skeletons/PackageCardSkeleton";
+import { packages } from "../data/packagesData";
+import { destinations } from "../data/destinationsData";
 
 export default function PackagesPage() {
-  const [packages, setPackages] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false); // Can remove if unnecessary, but keeping structure simple
 
-  useEffect(() => {
-    fetchPackages();
-  }, []);
-
-  const fetchPackages = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("packages")
-        .select("*, destinations(name)")
-        .order("price", { ascending: true });
-
-      if (error) throw error;
-      setPackages(data || []);
-    } catch (error) {
-      console.error("Error fetching packages:", error.message);
-    } finally {
-      setLoading(false);
-    }
+  const getDestinationName = (destinationId) => {
+    const dest = destinations.find((d) => d.id === destinationId);
+    return dest ? dest.name : "Malaysia";
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen pb-20 pt-8">
-        <div className="container px-4">
-          <div className="py-16 mb-8 glass-panel mx-4 rounded-3xl mt-8 animate-pulse bg-white/5 h-48"></div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <PackageCardSkeleton key={i} />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen pb-20">
@@ -84,7 +54,7 @@ export default function PackagesPage() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full text-xs font-bold text-white shadow-lg flex items-center gap-1">
-                  <Clock className="w-3 h-3 text-primary" />
+                  {/* <Clock className="w-3 h-3 text-primary" /> */}
                   {pkg.duration}
                 </div>
               </div>
@@ -92,7 +62,7 @@ export default function PackagesPage() {
               <div className="p-6 flex-1 flex flex-col relative z-20">
                 <div className="mb-2 text-sm text-primary font-medium flex items-center tracking-widest uppercase">
                   <MapPin className="w-3 h-3 mr-1" />
-                  {pkg.destinations?.name || "Malaysia"}
+                  {getDestinationName(pkg.destination_id)}
                 </div>
                 <h2 className="text-2xl font-serif font-bold mb-2 group-hover:text-primary transition-colors text-white">
                   {pkg.title}

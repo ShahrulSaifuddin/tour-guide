@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { supabase } from "../lib/supabase";
+import { packages } from "../data/packagesData";
+import { destinations } from "../data/destinationsData";
 import SEO from "../components/SEO";
 import {
   Loader2,
@@ -20,26 +21,25 @@ export default function PackageDetailsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchPackage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Simulate loading
+    const timer = setTimeout(() => {
+      const foundPkg = packages.find((p) => p.slug === slug);
+      if (foundPkg) {
+        // Enrich with destination data to match previous structure
+        const dest = destinations.find((d) => d.id === foundPkg.destination_id);
+        const enrichedPkg = {
+          ...foundPkg,
+          destinations: dest ? { name: dest.name } : null,
+        };
+        setPkg(enrichedPkg);
+      }
+      setLoading(false);
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, [slug]);
 
-  const fetchPackage = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("packages")
-        .select("*, destinations(*)")
-        .eq("slug", slug)
-        .single();
-
-      if (error) throw error;
-      setPkg(data);
-    } catch (error) {
-      console.error("Error fetching package:", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Removed fetchPackage async function
 
   if (loading) {
     return <PackageDetailsSkeleton />;
@@ -105,6 +105,26 @@ export default function PackageDetailsPage() {
               {pkg.description}
             </p>
           </section>
+
+          {pkg.itinerary && pkg.itinerary.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold mb-6">Itinerary</h2>
+              <div className="relative border-l border-primary/30 ml-3 space-y-8 pb-4">
+                {pkg.itinerary.map((item, idx) => (
+                  <div key={idx} className="relative pl-8">
+                    <div className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-primary" />
+                    <div className="text-sm font-bold text-primary mb-1">
+                      {item.time}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-400">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           <section>
             <h2 className="text-2xl font-bold mb-6">What's Included</h2>
