@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { useNavigate } from "react-router-dom";
 
 export default function AuthPage() {
-  const { signIn, signUp, signInWithGoogle } = useAuth();
+  const { signIn, signUp, signInWithGoogle, signInWithFacebook } = useAuth();
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -41,6 +41,15 @@ export default function AuthPage() {
   const handleGoogleLogin = async () => {
     try {
       const { error } = await signInWithGoogle();
+      if (error) throw error;
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleFacebookLogin = async () => {
+    try {
+      const { error } = await signInWithFacebook();
       if (error) throw error;
     } catch (error) {
       alert(error.message);
@@ -128,6 +137,18 @@ export default function AuthPage() {
             />
           </svg>
           Google
+        </Button>
+
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full bg-[#1877F2] text-white hover:bg-[#1864D9] hover:text-white border-transparent"
+          onClick={handleFacebookLogin}
+        >
+          <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 2.848-5.978 5.817-5.978.353 0 3.824.267 3.824.267v4.111h-2.154c-1.854 0-2.433 1.15-2.433 2.327v.851h4.631l-.738 3.668h-3.893v7.98h-5.056Z" />
+          </svg>
+          Facebook
         </Button>
 
         <div className="text-center text-sm">
