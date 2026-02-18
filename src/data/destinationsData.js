@@ -15,6 +15,54 @@ export const destinations = [
       "Merdeka Square",
       "Chinatown",
     ],
+    caseStudy: {
+      title: "Why Kuala Lumpur is Special",
+      body: "Kuala Lumpur isn't just a capital; it's a collision of cultures. You'll find steel-clad skyscrapers reflecting 100-year-old mosques, and the smell of roasting satay wafting through high-end shopping districts.",
+      insights: [
+        { label: "Best Time", value: "May - July" },
+        { label: "Vibe", value: "Urban Jungle" },
+        { label: "Ideal Trip", value: "3 Days" },
+      ],
+      story: {
+        morning: "Start with local kopi and kaya toast in Chinatown.",
+        afternoon: "Escape the heat in the futuristic KLCC district.",
+        night: "Watch the city sparkle from a rooftop bar in Bukit Bintang.",
+      },
+    },
+    history: {
+      text: "Founded in 1857 at the confluence of the Gombak and Klang rivers, KL began as a muddy tin-mining settlement. It survived fires, floods, and wars to become the alpha world city it is today.",
+      fact: "The name Kuala Lumpur literally translates to 'muddy confluence'.",
+    },
+    gallery: [
+      {
+        src: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=1000",
+        alt: "Petronas Towers",
+        captionTitle: "Iconic Skyline",
+        captionText: "The twin towers dominate the city view.",
+        tags: ["Landmark"],
+      },
+      {
+        src: "https://images.unsplash.com/photo-1565618544485-c89658dbdb9a?q=80&w=1000",
+        alt: "Batu Caves",
+        captionTitle: "Batu Caves",
+        captionText: "Limestone caves guarding Hindu shrines.",
+        tags: ["Culture"],
+      },
+      {
+        src: "https://images.unsplash.com/photo-1627488974558-8120c822709d?q=80&w=1000",
+        alt: "Jalan Alor",
+        captionTitle: "Street Food",
+        captionText: "The heart of KL's night food scene.",
+        tags: ["Food"],
+      },
+      {
+        src: "https://images.unsplash.com/photo-1510425275810-770cf08fc46a?q=80&w=1000",
+        alt: "Thean Hou Temple",
+        captionTitle: "Thean Hou Temple",
+        captionText: "One of the oldest and largest temples in SEA.",
+        tags: ["Culture"],
+      },
+    ],
   },
   {
     id: "563610d9-4f47-460e-b294-295add8c5d54",

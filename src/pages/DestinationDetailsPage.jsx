@@ -2,14 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { destinations, destinationsEditorial } from "../data/destinationsData";
 import { packages as packagesData } from "../data/packagesData";
-import { ArrowLeft, MapPin, Star, Clock } from "lucide-react";
+import { ArrowLeft, MapPin, Star, Clock, ArrowRight } from "lucide-react";
 import { Button } from "../components/ui/Button";
+
+// New Content Components
+import CaseStudySection from "../components/content/CaseStudySection";
+import HistorySection from "../components/content/HistorySection";
+import GalleryPreviewGrid from "../components/content/GalleryPreviewGrid";
+import GalaxyGalleryModal from "../components/gallery/GalaxyGalleryModal";
 
 export default function DestinationDetailsPage() {
   const { slug } = useParams();
   const [destination, setDestination] = useState(null);
   const [destinationPackages, setDestinationPackages] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Gallery State
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   const editorial =
     destinationsEditorial[slug] || destinationsEditorial.default;
@@ -58,7 +67,7 @@ export default function DestinationDetailsPage() {
             <div className="flex items-center text-primary mb-2 font-medium tracking-wide">
               <MapPin className="mr-2 h-4 w-4" /> MALAYSIA • CITY GUIDE
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-serif">
               {destination.name}
             </h1>
             <p className="text-lg md:text-xl text-gray-200 max-w-2xl leading-relaxed">
@@ -105,8 +114,29 @@ export default function DestinationDetailsPage() {
               </div>
             </section>
 
+            {/* [NEW] Case Study Section */}
+            {destination.caseStudy && (
+              <CaseStudySection data={destination.caseStudy} />
+            )}
+
+            {/* [NEW] History Section */}
+            {destination.history && (
+              <HistorySection
+                text={destination.history.text}
+                fact={destination.history.fact}
+              />
+            )}
+
+            {/* [NEW] Gallery Preview */}
+            {destination.gallery && (
+              <GalleryPreviewGrid
+                images={destination.gallery}
+                onViewAll={() => setIsGalleryOpen(true)}
+              />
+            )}
+
             {/* Experiences List Section */}
-            <section id="experiences" className="pt-8">
+            <section id="experiences" className="pt-8 border-t border-white/5">
               <div className="flex items-center justify-between mb-8">
                 <div>
                   <h2 className="text-3xl font-bold text-white">
@@ -255,6 +285,13 @@ export default function DestinationDetailsPage() {
           </div>
         </div>
       </div>
+
+      {/* Galaxy Modal */}
+      <GalaxyGalleryModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        images={destination.gallery || []}
+      />
     </div>
   );
 }

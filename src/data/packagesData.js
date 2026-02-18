@@ -31,7 +31,50 @@ export const packages = [
       {
         time: "01:00 PM",
         title: "Drop off",
-        description: "Return to hotel or city center.",
+      },
+    ],
+    caseStudy: {
+      title: "Inside the Experience",
+      body: "This isn't just a sightseeing drive; it's a crash course in Malaysian identity. We minimize driving time to maximize your time at the sites that matter.",
+      insights: [
+        { label: "Pace", value: "Easy" },
+        { label: "Crowds", value: "Moderate" },
+        { label: "Transport", value: "Private AC Van" },
+      ],
+      story: {
+        see: "The contrast between the Colonial District and modern KLCC.",
+        taste: "Technicolor Indian sweets at Batu Caves.",
+        takeaway: "Understanding how three cultures exist in harmony.",
+      },
+    },
+    gallery: [
+      {
+        src: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=1000",
+        alt: "KL Tour Highlights",
+        captionTitle: "City Icons",
+        captionText: "See the best of KL in half a day.",
+        tags: ["Tour"],
+      },
+      {
+        src: "https://images.unsplash.com/photo-1574227492706-f6cac3141854?q=80&w=1000",
+        alt: "National Mosque",
+        captionTitle: "National Mosque",
+        captionText: "Modernist architecture meeting tradition.",
+        tags: ["Culture"],
+      },
+      {
+        src: "https://images.unsplash.com/photo-1563789031959-4c02bcb41319?q=80&w=1000",
+        alt: "King's Palace",
+        captionTitle: "Istana Negara",
+        captionText: "The official residence of the Monarch.",
+        tags: ["Culture"],
+      },
+      {
+        src: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=1000",
+        alt: "Petronas Towers",
+        captionTitle: "Twin Towers",
+        captionText: "The world's tallest twin structures.",
+        tags: ["Landmark"],
       },
     ],
   },

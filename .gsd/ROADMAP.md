@@ -63,3 +63,17 @@
 3.  **Destination Detail**: Add "Experiences in {Place}" section filtering experiences by destination.
 4.  **Experience Detail**: Remove destination info; focus purely on itinerary and booking ("bookable tour" feel).
 5.  **Data Model**: Ensure all experiences link to a parent destination.
+
+## Phase 7: Rich Content & Storytelling
+
+**Status**: ✅ Completed
+**Goal**: Enhance Destination and Experience pages with premium content sections (Case Study, History) and an immersive Galaxy Gallery to increase engagement and perceived value.
+**Depends on**: Phase 6
+
+**Must-Haves**:
+
+1.  **Case Study Section**: "Why {Destination} is special" & "Inside the experience" blocks with editorial layout.
+2.  **History Section**: Scannable history content with "Read More" accordion.
+3.  **Gallery Preview**: Grid of 4-6 images on detail pages with "See more" CTA.
+4.  **Galaxy Modal**: Full-screen image slider with animated galaxy background (stars/nebula effect).
+5.  **Data Update**: Add `gallery` array and editorial content fields to data files.

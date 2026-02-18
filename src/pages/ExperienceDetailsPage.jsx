@@ -16,11 +16,20 @@ import {
 import { Button } from "../components/ui/Button";
 import { PackageDetailsSkeleton } from "../components/skeletons/PackageDetailsSkeleton";
 
+// New Content Components
+import CaseStudySection from "../components/content/CaseStudySection";
+import HistorySection from "../components/content/HistorySection";
+import GalleryPreviewGrid from "../components/content/GalleryPreviewGrid";
+import GalaxyGalleryModal from "../components/gallery/GalaxyGalleryModal";
+
 export default function ExperienceDetailsPage() {
   const { slug, destinationSlug } = useParams(); // Note: destinationSlug might come from URL if we use nested routes properly
   const [pkg, setPkg] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Gallery State
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   useEffect(() => {
     // Simulate loading
@@ -131,7 +140,7 @@ export default function ExperienceDetailsPage() {
             <MapPin className="w-3 h-3 mr-1" />{" "}
             {pkg.destinations?.name || "Malaysia"}
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 max-w-3xl leading-tight">
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 max-w-3xl leading-tight font-serif">
             {pkg.title}
           </h1>
           <div className="flex flex-wrap gap-4">
@@ -204,6 +213,22 @@ export default function ExperienceDetailsPage() {
               ))}
             </div>
           </section>
+
+          {/* [NEW] Case Study Section */}
+          {pkg.caseStudy && <CaseStudySection data={pkg.caseStudy} />}
+
+          {/* [NEW] History Section (only if exists) */}
+          {pkg.history && (
+            <HistorySection text={pkg.history.text} fact={pkg.history.fact} />
+          )}
+
+          {/* [NEW] Gallery Preview */}
+          {pkg.gallery && (
+            <GalleryPreviewGrid
+              images={pkg.gallery}
+              onViewAll={() => setIsGalleryOpen(true)}
+            />
+          )}
         </div>
 
         {/* Sidebar */}
@@ -264,6 +289,13 @@ export default function ExperienceDetailsPage() {
           </div>
         </div>
       </div>
+
+      {/* Galaxy Modal */}
+      <GalaxyGalleryModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        images={pkg.gallery || []}
+      />
     </div>
   );
 }

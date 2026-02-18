@@ -1,40 +1,45 @@
 import React, { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
-const GalaxyBackground = () => {
+export default function GalaxyBackground() {
   const canvasRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     let animationFrameId;
+    let particles = [];
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+    const createParticles = () => {
+      particles = [];
+      const particleCount = Math.min(window.innerWidth / 10, 100); // Responsive count
 
-    const stars = Array.from({ length: 200 }).map(() => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2,
-      speed: Math.random() * 0.5 + 0.1,
-      opacity: Math.random(),
-      fadeDirection: Math.random() > 0.5 ? 0.01 : -0.01,
-    }));
-
-    // Check for reduced motion preference
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const shouldReduceMotion = mediaQuery.matches;
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5 + 0.5,
+          color: `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.1})`,
+          speedX: (Math.random() - 0.5) * 0.2, // Very slow drift
+          speedY: (Math.random() - 0.5) * 0.2,
+        });
+      }
+    };
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw Nebula Gradient (simulated with large soft circles)
+      // Draw faint nebula-like gradient background (simulated)
       const gradient = ctx.createRadialGradient(
         canvas.width / 2,
         canvas.height / 2,
@@ -43,63 +48,51 @@ const GalaxyBackground = () => {
         canvas.height / 2,
         canvas.width,
       );
-      gradient.addColorStop(0, "rgba(49, 46, 129, 0.1)"); // Indigo-900/10
-      gradient.addColorStop(0.5, "rgba(88, 28, 135, 0.05)"); // Purple-900/05
+      gradient.addColorStop(0, "rgba(20, 10, 40, 0.4)");
       gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
-
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#ffffff";
-
-      stars.forEach((star) => {
-        ctx.globalAlpha = star.opacity;
+      particles.forEach((p) => {
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
         ctx.fill();
 
-        if (!shouldReduceMotion) {
-          // Animate opacity (twinkle)
-          star.opacity += star.fadeDirection;
-          if (star.opacity > 1 || star.opacity < 0.2) {
-            star.fadeDirection = -star.fadeDirection;
-          }
+        // Update position
+        p.x += p.speedX;
+        p.y += p.speedY;
 
-          // Animate position (parallax drift)
-          star.y -= star.speed;
-          if (star.y < 0) {
-            star.y = canvas.height;
-            star.x = Math.random() * canvas.width;
-          }
-        }
+        // Wrap around screen
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
       });
 
-      if (!shouldReduceMotion) {
-        animationFrameId = requestAnimationFrame(draw);
-      }
+      animationFrameId = requestAnimationFrame(draw);
     };
 
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    createParticles();
     draw();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return <div className="absolute inset-0 bg-black/90" />;
+  }
 
   return (
-    <div className="fixed inset-0 -z-50 bg-[#030712] overflow-hidden">
-      {/* Deep Space Base */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-[#030712] to-[#030712]" />
-
-      {/* Canvas Starfield */}
-      <canvas ref={canvasRef} className="absolute inset-0 block" />
-
-      {/* Scanline/Vignette Overlay for Cinematic feel */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-[#030712]/50 pointer-events-none"></div>
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ background: "linear-gradient(to bottom, #000000, #0a0a1a)" }}
+    />
   );
-};
-
-export default GalaxyBackground;
+}
