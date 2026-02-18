@@ -77,3 +77,16 @@
 3.  **Gallery Preview**: Grid of 4-6 images on detail pages with "See more" CTA.
 4.  **Galaxy Modal**: Full-screen image slider with animated galaxy background (stars/nebula effect).
 5.  **Data Update**: Add `gallery` array and editorial content fields to data files.
+
+## Phase 8: Rich Content Population
+
+**Status**: ✅ Complete
+**Goal**: Populate all destinations & experiences with full rich content (case study, storyline, history, gallery) to ensure consistency and premium feel.
+**Depends on**: Phase 7
+
+**Must-Haves**:
+
+1.  **Destinations**: All destinations have populated `caseStudy`, `history`, and `gallery` fields.
+2.  **Experiences**: All experiences have populated `caseStudy` and `gallery` fields (and `history` where relevant).
+3.  **No Placeholders**: No "undefined" or broken UI states for any destination/experience.
+4.  **Consistency**: All content follows the premium/editorial tone.
